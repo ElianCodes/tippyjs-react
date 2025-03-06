@@ -45,16 +45,18 @@ export default function TippyGenerator(tippy) {
 
     if (isControlledMode) {
       if (process.env.NODE_ENV !== 'production') {
-        ['trigger', 'hideOnClick', 'showOnCreate'].forEach(nativeStateProp => {
-          if (props[nativeStateProp] !== undefined) {
-            console.warn(
-              [
-                `@tippyjs/react: Cannot specify \`${nativeStateProp}\` prop in`,
-                `controlled mode (\`visible\` prop)`,
-              ].join(' '),
-            );
-          }
-        });
+        ['trigger', 'hideOnClick', 'showOnCreate'].forEach(
+          (nativeStateProp) => {
+            if (props[nativeStateProp] !== undefined) {
+              console.warn(
+                [
+                  `@tippyjs/react: Cannot specify \`${nativeStateProp}\` prop in`,
+                  `controlled mode (\`visible\` prop)`,
+                ].join(' '),
+              );
+            }
+          },
+        );
       }
 
       props.trigger = 'manual';

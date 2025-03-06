@@ -1,13 +1,14 @@
-import babel from 'rollup-plugin-babel';
-import {terser} from 'rollup-plugin-terser';
-import resolve from 'rollup-plugin-node-resolve';
-import replace from 'rollup-plugin-replace';
+import { babel } from '@rollup/plugin-babel';
+import terser from '@rollup/plugin-terser';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 
 const pluginBabel = babel();
 const pluginMinify = terser();
-const pluginResolve = resolve();
+const pluginResolve = nodeResolve();
 const pluginReplaceEnvProduction = replace({
   'process.env.NODE_ENV': JSON.stringify('production'),
+  preventAssignment: true
 });
 
 const COMMON_INPUT = {

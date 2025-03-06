@@ -64,8 +64,8 @@ function deepEqual(x, y) {
 export function uniqueByShape(arr) {
   const output = [];
 
-  arr.forEach(item => {
-    if (!output.find(outputItem => deepEqual(item, outputItem))) {
+  arr.forEach((item) => {
+    if (!output.find((outputItem) => deepEqual(item, outputItem))) {
       output.push(item);
     }
   });

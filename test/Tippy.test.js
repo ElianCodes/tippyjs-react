@@ -16,7 +16,7 @@ describe('<Tippy />', () => {
   });
 
   function Tippy(props) {
-    return <TippyBase {...props} onCreate={i => (instance = i)} />;
+    return <TippyBase {...props} onCreate={(i) => (instance = i)} />;
   }
 
   test('renders only the child element', () => {
@@ -237,7 +237,7 @@ describe('<Tippy />', () => {
     const App = () => {
       const [triggerTarget, setTriggerTarget] = React.useState(null);
       return (
-        <div ref={el => setTriggerTarget(el)}>
+        <div ref={(el) => setTriggerTarget(el)}>
           Trigger Target
           <Tippy content="tooltip" triggerTarget={triggerTarget}>
             <button />
@@ -268,7 +268,7 @@ describe('<Tippy />', () => {
     expect(instance).not.toBeNull();
   });
 
-  test('refs are preserved on the child', done => {
+  test('refs are preserved on the child', (done) => {
     class App extends React.Component {
       constructor(props) {
         super(props);
@@ -285,7 +285,7 @@ describe('<Tippy />', () => {
         return (
           <>
             <Tippy content="tooltip">
-              <button ref={node => (this.callbackRef = node)} />
+              <button ref={(node) => (this.callbackRef = node)} />
             </Tippy>
             <Tippy content="tooltip">
               <button ref={this.refObject} />
@@ -472,7 +472,10 @@ describe('<Tippy />', () => {
 
   test('render prop', () => {
     render(
-      <Tippy render={attrs => <div {...attrs}>Hello</div>} showOnCreate={true}>
+      <Tippy
+        render={(attrs) => <div {...attrs}>Hello</div>}
+        showOnCreate={true}
+      >
         <button />
       </Tippy>,
     );
@@ -504,7 +507,7 @@ describe('<Tippy />', () => {
   test('render prop preserve popperOptions', () => {
     const element = (
       <Tippy
-        render={attrs => <div {...attrs}>Hello</div>}
+        render={(attrs) => <div {...attrs}>Hello</div>}
         popperOptions={{
           strategy: 'fixed',
           modifiers: [{name: 'x', enabled: true, phase: 'main', fn: () => {}}],

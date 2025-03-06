@@ -4,7 +4,7 @@ import {default as tippyCore, Instance, Props, Placement} from 'tippy.js';
 type Content = React.ReactNode;
 
 export interface TippyProps extends Partial<Omit<Props, 'content' | 'render'>> {
-  children?: React.ReactElement<any>;
+  children?: React.ReactElement;
   content?: Content;
   visible?: boolean;
   disabled?: boolean;
@@ -23,7 +23,9 @@ export interface TippyProps extends Partial<Omit<Props, 'content' | 'render'>> {
   ) => React.ReactNode;
 }
 
-declare const Tippy: React.ForwardRefExoticComponent<TippyProps>;
+declare const Tippy: React.ForwardRefExoticComponent<
+  TippyProps & React.RefAttributes<Element>
+>;
 export default Tippy;
 
 export const tippy: typeof tippyCore;
