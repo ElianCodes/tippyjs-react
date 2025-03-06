@@ -5,8 +5,7 @@ export function preserveRef(ref, node) {
   if (ref) {
     if (typeof ref === 'function') {
       ref(node);
-    }
-    if ({}.hasOwnProperty.call(ref, 'current')) {
+    } else if (ref.hasOwnProperty('current')) {
       ref.current = node;
     }
   }

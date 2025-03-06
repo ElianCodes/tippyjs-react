@@ -3,7 +3,10 @@ import terser from '@rollup/plugin-terser';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 
-const pluginBabel = babel();
+const pluginBabel = babel({
+  babelHelpers: 'bundled',
+  exclude: 'node_modules/**'
+});
 const pluginMinify = terser();
 const pluginResolve = nodeResolve();
 const pluginReplaceEnvProduction = replace({

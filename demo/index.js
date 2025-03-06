@@ -62,6 +62,7 @@ const LazyTippy = forwardRef((props, ref) => {
     computedProps.content = mounted ? props.content : '';
   }
 
+  // Pass ref as a prop instead of accessing it directly
   return <Tippy {...computedProps} ref={ref} />;
 });
 

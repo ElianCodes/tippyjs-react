@@ -15,8 +15,9 @@ export default (Tippy, defaultProps) =>
                     ref.current = node;
                   }
                 }
-                if (children.ref) {
-                  preserveRef(children.ref, node);
+                // React 19 compatible way to handle refs
+                if (children.props && children.props.ref) {
+                  preserveRef(children.props.ref, node);
                 }
               },
             })

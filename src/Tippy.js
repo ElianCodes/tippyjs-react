@@ -228,7 +228,10 @@ export default function TippyGenerator(tippy) {
           ? cloneElement(children, {
               ref(node) {
                 mutableBox.ref = node;
-                preserveRef(children.ref, node);
+                // React 19 compatible way to handle refs
+                if (children.props && children.props.ref) {
+                  preserveRef(children.props.ref, node);
+                }
               },
             })
           : null}
