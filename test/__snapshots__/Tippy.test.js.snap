@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Tippy /> props.plugins 1`] = `
-Array [
-  Object {
+[
+  {
     "defaultValue": "",
     "fn": [Function],
     "name": "className",
   },
-  Object {
+  {
     "fn": [Function],
   },
 ]
@@ -24,20 +24,20 @@ exports[`<Tippy /> render prop 1`] = `
 `;
 
 exports[`<Tippy /> render prop preserve popperOptions 1`] = `
-Object {
-  "modifiers": Array [
-    Object {
+{
+  "modifiers": [
+    {
       "enabled": true,
       "fn": [Function],
       "name": "x",
       "phase": "main",
     },
-    Object {
+    {
       "enabled": true,
       "fn": [Function],
       "name": "$$tippyReact",
       "phase": "beforeWrite",
-      "requires": Array [
+      "requires": [
         "computeStyles",
       ],
     },

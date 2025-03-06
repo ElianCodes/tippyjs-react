@@ -45,16 +45,18 @@ export default function TippyGenerator(tippy) {
 
     if (isControlledMode) {
       if (process.env.NODE_ENV !== 'production') {
-        ['trigger', 'hideOnClick', 'showOnCreate'].forEach(nativeStateProp => {
-          if (props[nativeStateProp] !== undefined) {
-            console.warn(
-              [
-                `@tippyjs/react: Cannot specify \`${nativeStateProp}\` prop in`,
-                `controlled mode (\`visible\` prop)`,
-              ].join(' '),
-            );
-          }
-        });
+        ['trigger', 'hideOnClick', 'showOnCreate'].forEach(
+          (nativeStateProp) => {
+            if (props[nativeStateProp] !== undefined) {
+              console.warn(
+                [
+                  `@tippyjs/react: Cannot specify \`${nativeStateProp}\` prop in`,
+                  `controlled mode (\`visible\` prop)`,
+                ].join(' '),
+              );
+            }
+          },
+        );
       }
 
       props.trigger = 'manual';
@@ -226,7 +228,10 @@ export default function TippyGenerator(tippy) {
           ? cloneElement(children, {
               ref(node) {
                 mutableBox.ref = node;
-                preserveRef(children.ref, node);
+                // React 19 compatible way to handle refs
+                if (children.props && children.props.ref) {
+                  preserveRef(children.props.ref, node);
+                }
               },
             })
           : null}

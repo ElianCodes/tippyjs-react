@@ -1,5 +1,5 @@
 function updateClassName(box, action, classNames) {
-  classNames.split(/\s+/).forEach(name => {
+  classNames.split(/\s+/).forEach((name) => {
     if (name) {
       box.classList[action](name);
     }

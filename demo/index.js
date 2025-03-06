@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, forwardRef} from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import styled from 'styled-components';
 import {useSpring, animated} from 'react-spring';
 import {motion, useSpring as useFramerSpring} from 'framer-motion';
@@ -62,6 +62,7 @@ const LazyTippy = forwardRef((props, ref) => {
     computedProps.content = mounted ? props.content : '';
   }
 
+  // Pass ref as a prop instead of accessing it directly
   return <Tippy {...computedProps} ref={ref} />;
 });
 
@@ -70,7 +71,7 @@ function CountContent() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCount(c => c + 1);
+      setCount((c) => c + 1);
     }, 100);
 
     return () => clearInterval(interval);
@@ -94,7 +95,7 @@ function ContentString() {
 
   useEffect(() => {
     setInterval(() => {
-      setCount(count => count + 1);
+      setCount((count) => count + 1);
     }, 1000);
   }, []);
 
@@ -133,7 +134,7 @@ function DisabledProp() {
 
   return (
     <Tippy content="Tooltip" disabled={disabled}>
-      <button onClick={() => setDisabled(disabled => !disabled)}>
+      <button onClick={() => setDisabled((disabled) => !disabled)}>
         disabled: {String(disabled)}
       </button>
     </Tippy>
@@ -145,7 +146,7 @@ function VisibleProp() {
 
   return (
     <Tippy content="Tooltip" visible={visible}>
-      <button onClick={() => setVisible(visible => !visible)}>
+      <button onClick={() => setVisible((visible) => !visible)}>
         visible: {String(visible)}
       </button>
     </Tippy>
@@ -174,7 +175,7 @@ function SingletonHeadlessDynamicContent() {
 
   useEffect(() => {
     setInterval(() => {
-      setCount(c => c + 1);
+      setCount((c) => c + 1);
     }, 1000);
   }, []);
 
@@ -202,7 +203,7 @@ function SingletonHeadless() {
 
   useEffect(() => {
     setInterval(() => {
-      setEnabled(e => !e);
+      setEnabled((e) => !e);
     }, 2000);
   }, []);
 
@@ -262,7 +263,7 @@ function ReactSpring() {
 
   return (
     <TippyHeadless
-      render={attrs => (
+      render={(attrs) => (
         <ReactSpringBox style={props} {...attrs}>
           Hello
         </ReactSpringBox>
@@ -288,7 +289,7 @@ function FramerMotion() {
   }
 
   function onHide({unmount}) {
-    const cleanup = scale.onChange(value => {
+    const cleanup = scale.onChange((value) => {
       if (value <= initialScale) {
         cleanup();
         unmount();
@@ -301,7 +302,7 @@ function FramerMotion() {
 
   return (
     <TippyHeadless
-      render={attrs => (
+      render={(attrs) => (
         <ReactFramerBox style={{scale, opacity}} {...attrs}>
           Hello
         </ReactFramerBox>
@@ -441,4 +442,6 @@ function NestedContent() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);

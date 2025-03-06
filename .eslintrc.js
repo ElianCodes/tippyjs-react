@@ -4,26 +4,20 @@ module.exports = {
     node: true,
     jest: true,
   },
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ['@babel/preset-react']
     },
   },
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
+  plugins: ['react', 'react-hooks'],
   settings: {
     react: {
       version: 'detect',
     },
-  },
-  plugins: ['react-hooks'],
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
-  rules: {
-    'no-console': 'off',
-    'react/prop-types': 'off',
-    'no-unused-vars': ['error', {ignoreRestSiblings: true}],
-    'react-hooks/rules-of-hooks': 'error',
-    'react/display-name': 'off',
   },
 };

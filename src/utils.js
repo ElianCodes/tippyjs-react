@@ -5,8 +5,7 @@ export function preserveRef(ref, node) {
   if (ref) {
     if (typeof ref === 'function') {
       ref(node);
-    }
-    if ({}.hasOwnProperty.call(ref, 'current')) {
+    } else if (ref.hasOwnProperty('current')) {
       ref.current = node;
     }
   }
@@ -64,8 +63,8 @@ function deepEqual(x, y) {
 export function uniqueByShape(arr) {
   const output = [];
 
-  arr.forEach(item => {
-    if (!output.find(outputItem => deepEqual(item, outputItem))) {
+  arr.forEach((item) => {
+    if (!output.find((outputItem) => deepEqual(item, outputItem))) {
       output.push(item);
     }
   });

@@ -33,7 +33,7 @@ export default function useSingletonGenerator(createSingleton) {
       }
 
       const instance = createSingleton(
-        children.map(child => child.instance),
+        children.map((child) => child.instance),
         {
           ...sourceData.props,
           popperOptions: sourceData.instance.props.popperOptions,
@@ -81,7 +81,7 @@ export default function useSingletonGenerator(createSingleton) {
         }),
       );
 
-      instance.setInstances(children.map(child => child.instance));
+      instance.setInstances(children.map((child) => child.instance));
 
       if (disabled) {
         instance.disable();
@@ -119,18 +119,18 @@ export default function useSingletonGenerator(createSingleton) {
 
           if (mutableBox.instance && !mutableBox.instance.state.isDestroyed) {
             mutableBox.instance.setInstances(
-              mutableBox.children.map(child => child.instance),
+              mutableBox.children.map((child) => child.instance),
             );
           }
         },
         cleanup(instance) {
           mutableBox.children = mutableBox.children.filter(
-            data => data.instance !== instance,
+            (data) => data.instance !== instance,
           );
 
           if (mutableBox.instance && !mutableBox.instance.state.isDestroyed) {
             mutableBox.instance.setInstances(
-              mutableBox.children.map(child => child.instance),
+              mutableBox.children.map((child) => child.instance),
             );
           }
         },
