@@ -19,9 +19,9 @@ export default function TippyGenerator(tippy) {
     reference,
     disabled = false,
     ignoreAttributes = true,
+    // Add ref as a direct prop
+    ref,
     // Filter React development reserved props
-    // added by babel-preset-react dev plugins:
-    // transform-react-jsx-self and transform-react-jsx-source
     __source,
     __self,
     ...restOfNativeProps
@@ -228,6 +228,10 @@ export default function TippyGenerator(tippy) {
           ? cloneElement(children, {
               ref(node) {
                 mutableBox.ref = node;
+                // Handle the ref passed as a prop
+                if (ref) {
+                  preserveRef(ref, node);
+                }
                 // React 19 compatible way to handle refs
                 if (children.props && children.props.ref) {
                   preserveRef(children.props.ref, node);
